@@ -1,0 +1,185 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ZenithPort</title>
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="{% static 'custom/css/bootstrap-grid.css' %}">
+    <link rel="stylesheet" href="{% static 'custom/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'custom/css/glide.css' %}">
+    <link rel="stylesheet" href="{% static 'custom/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'custom/css/content-box.css' %}">
+    <link rel="stylesheet" href="{% static 'custom/css/contact-form.css' %}">
+    <link rel="stylesheet" href="{% static 'custom/css/media-box.css' %}">
+    <link rel="stylesheet" href="{% static 'custom/css/skin.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'custom/css/sop.css' %}">
+
+
+    <!-- google translate -->
+    <style type="text/css">
+        .goog-logo-link {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
+            color: transparent !important;
+        }
+
+        .goog-te-gadget .goog-te-combo {
+            color: blue !important;
+        }
+
+        .goog-te-banner-frame.skiptranslate {
+            display: none !important;
+        }
+
+        body {
+            top: 0px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="preloader"></div>
+    <nav class="menu-top-logo menu-fixed" data-menu-anima="fade-in" style="background-color: #004767;">
+        <div class="container">
+            <div class="menu-brand">
+                <a href="{% url 'home' %}">
+                    <img class="logo-default scroll-hide" src="{% static 'media/logos.png' %}" alt="logo" />
+                    <img class="logo-retina scroll-hide" src="{% static 'media/logos.png' %}" alt="logo" />
+                    <img class="logo-default scroll-show" src="{% static 'media/logos.png' %}" alt="logo" />
+                    <img class="logo-retina scroll-show" src="{% static 'media/logos.png' %}" alt="logo" />
+                </a>
+            </div>
+            
+            <i class="menu-btn"><i class="fa-solid fa-bars" style="color: white;"></i></i>
+            <div class="menu-cnt">
+                <ul id="main-menu">
+                    {% if not user.is_authenticated %}
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'investment' %}">Investment</a></li>
+                    <li><a href="{% url 'faq' %}">FAQ</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    {% else %}
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'dashboard' %}">Account</a></li>
+                    <li><a href="{% url 'about' %}">About Us</a></li>
+                    <li><a href="{% url 'investment' %}">Investment</a></li>
+                    <li><a href="{% url 'faq' %}">FAQ</a></li>
+                    <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% endif %}
+                    <li class="nav-label">
+                        <a href="#"><span>Call us:</span> VIP ONLY </a>
+                    </li>
+
+                </ul>
+                <div class="menu-right">
+                    <div class="custom-area">
+                        support Email<br />
+                        support@zenithport.com </div>
+                    <ul class="lan-menu" style="margin-top: 30px;">
+                        <li class="dropdown" id="google_translate_element"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    {% block body %}
+
+    {% endblock %}
+    <footer class="light" style="background-color: #004767;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h3>ZenithPort</h3><br>
+
+                    <a href="{% static 'media/certificate.jpg' %}"
+                        class="btn btn-border btn-sm width-190 active full-width-sm" download>CERTIFICATE</a>
+                    <div class="icon-links icon-social icon-links-grid social-colors" style="margin-top: 20px;">
+                        <a class="facebook" href="#" ><i class="fa-brands fa-telegram"></i></a>
+                        <a class="twitter" href="#" ><i class="fa-brands fa-whatsapp"></i></a>
+                        <a class="instagram" href="https://www.instagram.com/zenith_port?igsh=OGQ5ZDc2ODk2ZA=="><i class="fa-brands fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <h3>Quick Links</h3>
+                    <ul class="icon-list icon-line">
+                        <li><a href="{% url 'home' %}">HOME</a></li>
+                        <li><a href="{% url 'investment' %}">INVESTMENT</a></li>
+                        <li><a href="{% url 'contact' %}">CONTACT US</a></li>
+                        <li><a href="{% url 'faq' %}">FAQ</a></li>
+                        <li><a href="{% url 'terms' %}">TERMS AND CONDITIONS</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <ul class="text-list text-list-line">
+                        <li><b>Address:</b>
+                            <p>Dreibündenstrasse 6383<br>Dallenwil, Switzerland.</p>
+                        </li>
+                        <br>
+                        <li><b>Opening hours:</b>
+                            <p>Always Open</p>
+                        </li>
+                        <br>
+                        <li><b>Email:</b>
+                            <p>support@zenithport.com</p>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bar">
+            <div class="container">
+                <span><script>document.write(new Date().getFullYear())</script>©<a href="">zenithport.com</a>.</span>
+                <span><a href="{% url 'contact' %}">Contact us</a> | <a href="{% url 'terms' %}">Terms &
+                        Conditions</a></span>
+            </div>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/82d49a62e0.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="{% static 'custom/scripts/main.js' %}"></script>
+        <script src="{% static 'custom/scripts/parallax.min.js' %}"></script>
+        <script src="{% static 'custom/scripts/glide.min.js' %} "></script>
+        <script src="{% static 'custom/scripts/magnific-popup.min.js' %}"></script>
+        <script src="{% static 'custom/scripts/tab-accordion.js' %}"></script>
+        <script src="{% static 'custom/scripts/imagesloaded.min.js' %}"></script>
+        <script src="{% static 'custom/scripts/progress.js' %}" async></script>
+        <script src="{% static 'custom/scripts/spop.js' %}"></script>
+
+
+        <script src="{% static 'custom/scripts/contact-form/contact-form.js' %}"></script>
+        <script src="{% static 'custom/scripts/maps.min.js' %}"></script>
+        <!-- <script src="tools/sidebar/sidebar.js" data-setting="execoore"></script> -->
+    </footer>
+
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/662a1607a0c6737bd1302cc8/1hsa6c41m';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+</body>
+</html>
