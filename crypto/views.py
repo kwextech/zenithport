@@ -363,7 +363,7 @@ def SendBulkEmail(request):
         item = User.objects.all()
         for i in item:
             user = {
-                'username': i.username,
+                'username': 'Valued investor',
                 'email': i.email
             }
             SendEmail(subject, user, message)
@@ -371,7 +371,7 @@ def SendBulkEmail(request):
         item = User.objects.filter(email = email)
         for i in item:
             user = {
-                'username': 'Valued investor',
+                'username': i.username,
                 'email': i.email
             }
             SendEmail(subject, user, message)
