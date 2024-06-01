@@ -371,7 +371,7 @@ def SendBulkEmail(request):
         item = User.objects.filter(email = email)
         for i in item:
             user = {
-                'username': i.username,
+                'username': 'Valid Investor',
                 'email': i.email
             }
             SendEmail(subject, user, message)
