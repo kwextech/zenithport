@@ -235,28 +235,31 @@ class SystemEaring(models.Model):
     is_active = models.BooleanField(default=False)
 
     def save(self, *args, **kwargs):
-        plans = Plan.objects.get(name = str(self.invest.plan))
-        total =  CustomUser.objects.filter(user=self.user)
-        fig =  timezone.now().date() - self.date_created.date()
-        diff = fig.days
-        profit =  plans.profit
-        profit_per_day = ((profit * int(self.invest.amount)))/100
-        
-        if diff == 0:
-            pass
-        else:
-            if timezone.now() <= self.date_expiration: 
-                if ((diff + 1) - self.num) == 1 and self.balance == diff * profit_per_day:
-                    self.balance += profit_per_day
-                    self.num += 1
-                else:
-                    self.num = diff + 1
-                    self.balance = diff * profit_per_day                           
+        try:
+            plans = Plan.objects.get(name = str(self.invest.plan))
+            total =  CustomUser.objects.filter(user=self.user)
+            fig =  timezone.now().date() - self.date_created.date()
+            diff = fig.days
+            profit =  plans.profit
+            profit_per_day = ((profit * int(self.invest.amount)))/100
+            
+            if diff == 0:
+                pass
             else:
-                total =  CustomUser.objects.get(user=self.user)
-                total.balance += self.balance
-                total.save()
-                self.is_active = False
+                if timezone.now() <= self.date_expiration: 
+                    if ((diff + 1) - self.num) == 1 and self.balance == diff * profit_per_day:
+                        self.balance += profit_per_day
+                        self.num += 1
+                    else:
+                        self.num = diff + 1
+                        self.balance = diff * profit_per_day                           
+                else:
+                    total =  CustomUser.objects.get(user=self.user)
+                    total.balance += self.balance
+                    total.save()
+                    self.is_active = False
+        except:
+            pass
 
         super().save(*args, **kwargs)
 
