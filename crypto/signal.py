@@ -42,13 +42,13 @@ def InvestHistorySave(sender, instance, created, **kwargs):
 def TransferHistorySave(sender, instance, created, **kwargs):
     if created:
         ids = instance.user
-        History.objects.create(user=ids, action='Transfer', amount=instance.amount, status = instance.status, date_created = instance.date_created)
+        History.objects.create(user=ids, action='Transfer', transfer=instance, amount=instance.amount, status = instance.status, date_created = instance.date_created)
 
 
 @receiver(post_save, sender=Transfer)
 def UpdateTransferHistorySave(sender, instance, created, **kwargs):
     if created == False:
-        History.objects.filter(transfer =instance).update(action='Transfer', status = True)
+        History.objects.filter(transfer=instance).update(action='Transfer', status = True)
 
 
 
