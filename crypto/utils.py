@@ -87,11 +87,11 @@ def TransferRecieverMail(referer, amount, user):
     email_body =  render_to_string('email/recievertransfer.html',{
         'user': user,
         'amount': amount,
-        'referer': referer
+        'referer': referer.username
 
     })
     email = EmailMessage(subject=email_subject, body=email_body,
-        from_email='ZenithPort <support@zenithport.com>', to=[user.email]
+        from_email='ZenithPort <support@zenithport.com>', to=[referer.email]
         )
     email.content_subtype = 'html'
     email.send()

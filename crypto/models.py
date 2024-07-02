@@ -165,14 +165,13 @@ class Transfer(models.Model):
     def save(self, *args, **kwargs):
         user =  self.user
         amount =  self.amount
-        referer =  self.reciever
+        referer =  User.objects.get(username=self.reciever)
         if self.status == True:
             TransferMail(user,referer,amount)
             TransferRecieverMail(referer, amount, user)
             bal =  CustomUser.objects.get(user= self.user)
             bal.balance -= int(amount)
-            recieved = User.objects.get(username=self.reciever)
-            custom = CustomUser.objects.get(user = recieved.pk)
+            custom = CustomUser.objects.get(user = referer.pk)
             custom.balance += int(amount)
             custom.save()
             bal.save()
