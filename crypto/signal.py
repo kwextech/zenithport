@@ -48,7 +48,7 @@ def TransferHistorySave(sender, instance, created, **kwargs):
 @receiver(post_save, sender=Transfer)
 def UpdateTransferHistorySave(sender, instance, created, **kwargs):
     if created == False:
-        History.objects.filter(transfer =instance).update(action='Transfer', status = instance.status)
+        History.objects.filter(transfer =instance).update(action='Transfer', status = True)
 
 
 
