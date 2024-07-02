@@ -84,7 +84,7 @@ def TransferMail(user,referer, amount):
 
 def TransferRecieverMail(referer, amount, user):
     email_subject = 'Internal Fund Transfer'
-    email_body =  render_to_string('email/transferemail.html',{
+    email_body =  render_to_string('email/recievertransfer.html',{
         'user': user,
         'amount': amount,
         'referer': referer

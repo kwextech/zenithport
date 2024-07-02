@@ -191,6 +191,7 @@ class History(models.Model):
     payment = models.ForeignKey(Payment, on_delete=models.CASCADE, blank=True, null=True)
     withdraw = models.ForeignKey(Withdrawal, on_delete=models.CASCADE, blank=True, null=True)
     invest = models.ForeignKey(Investment, on_delete=models.CASCADE, blank=True, null=True)
+    transfer = models.ForeignKey(Transfer, on_delete=models.CASCADE, blank=True, null=True)
     action =  models.CharField(max_length=200, choices=choice, blank=True, null=True, editable=False)
     currency = models.CharField(max_length=20, blank=True, null=True)
     amount = models.CharField(max_length=20)
