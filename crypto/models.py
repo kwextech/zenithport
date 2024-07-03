@@ -163,7 +163,7 @@ class Transfer(models.Model):
         return f"{self.user}---------{self.amount}------------{self.reciever}"
     
     def save(self, *args, **kwargs):
-        user =  self.user
+        user =  User.objects.get(username=self.user)
         amount =  self.amount
         referer =  User.objects.get(username=self.reciever)
         if self.status == True:
